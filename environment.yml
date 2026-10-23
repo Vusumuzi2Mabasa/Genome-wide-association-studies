@@ -8,5 +8,8 @@ dependencies:
   - fastp=0.23.4
   - multiqc
   - plink2
+  - matplotlib
+  - numpy
+  - scipy
 # Portable environment specification, not a resolved lockfile.
 # Exact tested executable versions are recorded in results/versions.json.

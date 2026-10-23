@@ -11,4 +11,6 @@ for name in ['validation.json','versions.json']:
 for folder in ['summary','genotype','reads']:
  dest=a.out/folder;dest.mkdir(exist_ok=True)
  for f in (a.run/folder).glob('*.tsv'):shutil.copy2(f,dest/f.name)
+for name in ['assoc.PHENO.glm.logistic.hybrid','pcs.eigenvec','pcs.eigenval','ld.prune.in','hwe_0.hardy','hwe_1.hardy','qc_stats.afreq']:
+ shutil.copy2(a.run/'genotype'/name,a.out/'genotype'/name)
 print('Exported synthetic evidence to',a.out)

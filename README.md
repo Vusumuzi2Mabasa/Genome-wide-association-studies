@@ -45,6 +45,46 @@ The independent 58-row table is screened for schema consistency, finite numeric 
 
 Partner records are checked against the synthetic SIM1 coordinate system, including allele alignment, effect/frequency reversal, and Wald P-value consistency. Ambiguous palindromic pairs are excluded from combination. This process produces a harmonisation audit, not a meta-analysis. Annotation is a left join so missing annotations do not silently remove valid associations. SIM1 is not a human reference assembly, and the gene labels are synthetic.
 
+### Computational stages and output provenance
+
+The driver in `scripts/run_workflow.py` resolves executables before starting, refuses an existing output directory, and writes command lines and individual tool logs as each step executes. The three branches share provenance recording but use independent inputs. The table describes the implemented order and the evidence produced.
+
+| Stage | Implementation and decision | Recorded evidence |
+|---|---|---|
+| 1. Input validation | Verify FASTQ structure and fixture pair IDs; require VCF GT fields and unique sample/variant identifiers; match phenotype/covariate IDs; validate summary-table schema. | Input SHA-256 hashes and explicit errors on malformed inputs. |
+| 2. Read QC | Run raw FastQC; measure Phred+33 quality and full fixture-adapter occurrence; process only affected pairs with fastp; validate output pairing and residual fixture defects. | Raw/processed FastQC, two MultiQC reports, fastp reports, read retention and base-level metrics. |
+| 3. VCF import | `--vcf ... --double-id --make-pgen`; retain matching FID/IID conventions and report initial missingness. | PGEN/PVAR/PSAM files and missingness reports in the run directory. |
+| 4. Sample QC | Identify exact genotype duplicates, assess within-population heterozygosity, and apply `--mind 0.10`. P059 duplicates P001; P060 fails missingness. No additional heterozygosity outlier is removed. | `sample_audit.tsv`, `remove.tsv`, and PLINK sample-filter logs; 60 to 58 samples. |
+| 5. Variant QC | Apply `--geno 0.10 --maf 0.01 --mac 5` after sample filtering. | 120 to 112 variants; frequency and missingness reports. |
+| 6. Control HWE | Run `--hardy` separately in POP_A and POP_B controls; union exclusions with P < 1e-6. | Two HWE reports and control-group counts; zero HWE exclusions. |
+| 7. LD and PCA | `--indep-pairwise 50 5 .2`, then `--extract ld.prune.in --pca 3`. | 110-marker prune list, eigenvectors and eigenvalues. |
+| 8. Association | Join age, sex and PC1-PC3 by IID; standardise age/PC covariates; run additive logistic regression with Firth fallback on all 112 QC variants. | Original PLINK output, valid-only table, and audit retaining every attempted additive test. |
+| 9. Summary QC | Validate values/ranges, resolve exact and allele-oriented duplicates, quarantine conflicts, select P < 5e-8, and retain unannotated rows. | 41 clean rows, 17 exclusions, four synthetic hits, and annotation table. |
+| 10. Harmonisation | Check SIM1 coordinates, allele orientation, ambiguous palindromes, and partner Wald P-value agreement within 0.05 log10 units. Swap beta sign and replace EAF with 1-EAF when needed. | Twelve-row audit with six rows ready for combination; no combined effect estimate is calculated. |
+| 11. Reporting | Export compact evidence; plot valid PLINK P values and ID-matched PCA scores; calculate ranked odds ratios and approximate confidence intervals. | Three PNG figures, complete ranked table, joined PCA table and plotting versions/metrics. |
+
+The fitted association model is:
+
+```text
+logit[Pr(case)] = intercept + beta_G * effect-allele dosage
+                 + beta_age * age + beta_sex * sex
+                 + beta_PC1 * PC1 + beta_PC2 * PC2 + beta_PC3 * PC3
+```
+
+Sex is supplied as the numeric two-level covariate 1/2; age and PC covariates are variance-standardised by PLINK. Population labels are used for QC grouping and figure annotation; they are not an additional regression covariate. With two levels, the numeric sex term represents the difference between the two coded groups. These data have a binary endpoint; this is not a survival GWAS.
+
+The association command issued by the driver has the following form (paths are relative to the run's genotype directory for illustration):
+
+```bash
+plink2 --pfile qc --pheno /path/to/data/genotype/phenotype.tsv \
+  --pheno-name PHENO --covar covariates.tsv \
+  --covar-name AGE,SEX,PC1,PC2,PC3 \
+  --covar-variance-standardize AGE,PC1,PC2,PC3 \
+  --glm hide-covar firth-fallback --out assoc
+```
+
+Use the driver for a complete run; the actual absolute paths and commands are recorded in each run's `commands.sh`. The audit distinguishes a completed workflow from a successful statistical fit. Exact duplicate removal, a small-panel HWE test and three PCs do not substitute for full cohort QC, kinship analysis, reference-based ancestry assessment, batch checks, imputation QC or replication.
+
 ## Results
 
 | Analysis | Input | Retained / outcome |
@@ -61,6 +101,41 @@ Partner records are checked against the synthetic SIM1 coordinate system, includ
 | sample_adapter | 500 / 500 | 100,000 / 93,994 | 100% / 100% | 200 / 0 |
 | sample_good | 500 / 500 | 100,000 / 100,000 | 100% / 100% | 0 / 0 |
 | sample_lowqual | 500 / 500 | 100,000 / 68,995 | 70% / 100% | 0 / 0 |
+
+### PLINK GWAS results and diagnostic figures
+
+The adjusted PLINK analysis attempted 112 additive tests in 58 samples. Of these, 111 produced valid statistics; one constant-dosage variant was excluded from the figures and ranking. No variant passed the panel-wide Bonferroni threshold (0.05/112 = 0.0004464) or the conventional genome-wide threshold (5e-8). The smallest P value was 0.001838 for v0025. The table below reports the ten smallest P values as descriptive results, not significant discoveries.
+
+| Variant | Chr:position | Effect / other allele | Effect allele frequency | OR (95% Wald CI) | P value | N |
+|---|---|---|---:|---:|---:|---:|
+| v0025 | 2:2010000 | G / A | 0.336 | 8.125 (2.175-30.355) | 0.001838 | 58 |
+| v0093 | 4:4210000 | G / A | 0.078 | 0.084 (0.012-0.565) | 0.01087 | 58 |
+| v0014 | 1:1140000 | T / C | 0.319 | 3.110 (1.156-8.369) | 0.02467 | 58 |
+| v0026 | 2:2020000 | T / C | 0.138 | 4.551 (1.014-20.432) | 0.04797 | 58 |
+| v0094 | 4:4220000 | T / C | 0.190 | 0.361 (0.130-1.003) | 0.05069 | 58 |
+| v0033 | 2:2090000 | G / A | 0.345 | 2.565 (0.992-6.636) | 0.05205 | 58 |
+| v0057 | 3:3090000 | G / A | 0.353 | 0.467 (0.197-1.108) | 0.08405 | 58 |
+| v0075 | 4:4030000 | C / A | 0.233 | 2.337 (0.887-6.157) | 0.08585 | 58 |
+| v0040 | 2:2160000 | T / G | 0.207 | 2.700 (0.868-8.395) | 0.08622 | 58 |
+| v0006 | 1:1060000 | T / C | 0.328 | 0.501 (0.228-1.104) | 0.08641 | 58 |
+
+Odds ratios refer to the PLINK A1 effect allele relative to the omitted allele, conditional on the model covariates. The confidence intervals are calculated as exp[log(OR) +/- 1.96 SE(log OR)]. They are approximate, unadjusted Wald intervals, not multiplicity-adjusted intervals or Firth profile-likelihood intervals. No valid test required Firth fallback in this run.
+
+Download the [unaltered PLINK association output](results/genotype/assoc.PHENO.glm.logistic.hybrid), [complete ranked results with confidence intervals](results/genotype/plink_ranked_results.tsv), and [audit including the failed test](results/genotype/association_audit.tsv).
+
+![Manhattan plot of 111 valid PLINK association tests](results/figures/plink_manhattan.png)
+
+**Figure 1.** Manhattan plot of the synthetic genotype association analysis. Chromosomes alternate in colour; positions are concatenated across the five represented chromosomes. The dashed orange line denotes the panel-wide Bonferroni threshold and the dotted red line denotes P = 5e-8. The absence of threshold-crossing variants is consistent with the reported results. Failed tests are omitted, while the Bonferroni denominator retains all 112 attempted tests.
+
+![QQ plot of PLINK P values with a pointwise null envelope](results/figures/plink_qq.png)
+
+**Figure 2.** Observed versus expected negative log10 P values from 111 valid tests. Expected uniform quantiles are (i - 0.5)/n. The shaded region is a 95% pointwise envelope from Beta(i, n + 1 - i) order statistics under independent uniform null P values; correlation among variants limits this reference approximation. The genomic inflation factor is median[chi-square inverse-survival(P, 1 df)] / median[chi-square(1 df)] = **0.962**. This is a descriptive diagnostic based on a small synthetic panel, not evidence that confounding has been eliminated. No genomic-control correction was applied to the reported P values.
+
+![PLINK PCA plots coloured by synthetic population and shaped by case status](results/figures/plink_pca.png)
+
+**Figure 3.** PC1-PC2 and PC1-PC3 scores from 110 LD-pruned variants in 58 retained samples. Colour identifies the supplied synthetic population label and shape identifies case/control status. The groups overlap substantially in these projections; they should not be interpreted as validated ancestry clusters. Axes show eigenvector scores. Variance-explained percentages are not estimated from only the three exported eigenvalues. Eigenvector signs may reverse between numerical implementations without changing the underlying geometry. Download [PCA scores and metadata](results/genotype/pca_metadata.tsv), [original eigenvectors](results/genotype/pcs.eigenvec), and [eigenvalues](results/genotype/pcs.eigenval).
+
+### Independent summary-statistics results
 
 | Synthetic summary variant | Effect allele | Beta | SE | P value |
 |---|---|---:|---:|---:|
@@ -88,7 +163,10 @@ conda activate synthetic-qc
 bash run.sh --out runs/my_run --threads 2
 python3 -m unittest discover -s tests -v
 python3 scripts/export_results.py runs/my_run --out results
+python3 scripts/plot_results.py --results results --data data
 ```
+
+The plotting step requires Matplotlib, NumPy and SciPy, included in `environment.yml`. Figures can be regenerated directly from the committed results without rerunning PLINK: `python3 scripts/plot_results.py`. It validates test counts and PCA sample counts against the run manifest. Plotting versions and diagnostics are recorded in [plot_metrics.json](results/plot_metrics.json).
 
 The environment YAML is a portable dependency specification, not a fully resolved lockfile; inspect the recorded versions when comparing runs. The final validation used existing tools rather than installing this environment. On the tested machine PLINK was outside the default PATH, so the full run used:
 

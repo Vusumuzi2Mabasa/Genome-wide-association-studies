@@ -1,0 +1,15 @@
+{
+  "attempted_tests": 112,
+  "plotted_tests": 111,
+  "excluded_tests": 1,
+  "bonferroni_threshold": 0.00044642857142857147,
+  "lambda_gc": 0.9622107401500489,
+  "minimum_p": 0.00183833,
+  "top_variant": "v0025",
+  "pca_samples": 58,
+  "pca_markers": 110,
+  "python": "3.12.14",
+  "matplotlib": "3.11.2",
+  "numpy": "2.3.5",
+  "scipy": "1.18.1"
+}
