@@ -1,0 +1,121 @@
+stage	file	module	status
+raw	sample_adapter_R1.fastq.gz	Basic Statistics	PASS
+raw	sample_adapter_R1.fastq.gz	Per base sequence quality	FAIL
+raw	sample_adapter_R1.fastq.gz	Per sequence quality scores	FAIL
+raw	sample_adapter_R1.fastq.gz	Per base sequence content	FAIL
+raw	sample_adapter_R1.fastq.gz	Per sequence GC content	PASS
+raw	sample_adapter_R1.fastq.gz	Per base N content	PASS
+raw	sample_adapter_R1.fastq.gz	Sequence Length Distribution	PASS
+raw	sample_adapter_R1.fastq.gz	Sequence Duplication Levels	PASS
+raw	sample_adapter_R1.fastq.gz	Overrepresented sequences	WARN
+raw	sample_adapter_R1.fastq.gz	Adapter Content	FAIL
+raw	sample_adapter_R2.fastq.gz	Basic Statistics	PASS
+raw	sample_adapter_R2.fastq.gz	Per base sequence quality	FAIL
+raw	sample_adapter_R2.fastq.gz	Per sequence quality scores	FAIL
+raw	sample_adapter_R2.fastq.gz	Per base sequence content	FAIL
+raw	sample_adapter_R2.fastq.gz	Per sequence GC content	WARN
+raw	sample_adapter_R2.fastq.gz	Per base N content	PASS
+raw	sample_adapter_R2.fastq.gz	Sequence Length Distribution	PASS
+raw	sample_adapter_R2.fastq.gz	Sequence Duplication Levels	PASS
+raw	sample_adapter_R2.fastq.gz	Overrepresented sequences	WARN
+raw	sample_adapter_R2.fastq.gz	Adapter Content	FAIL
+raw	sample_good_R1.fastq.gz	Basic Statistics	PASS
+raw	sample_good_R1.fastq.gz	Per base sequence quality	FAIL
+raw	sample_good_R1.fastq.gz	Per sequence quality scores	FAIL
+raw	sample_good_R1.fastq.gz	Per base sequence content	PASS
+raw	sample_good_R1.fastq.gz	Per sequence GC content	WARN
+raw	sample_good_R1.fastq.gz	Per base N content	PASS
+raw	sample_good_R1.fastq.gz	Sequence Length Distribution	PASS
+raw	sample_good_R1.fastq.gz	Sequence Duplication Levels	PASS
+raw	sample_good_R1.fastq.gz	Overrepresented sequences	WARN
+raw	sample_good_R1.fastq.gz	Adapter Content	PASS
+raw	sample_good_R2.fastq.gz	Basic Statistics	PASS
+raw	sample_good_R2.fastq.gz	Per base sequence quality	FAIL
+raw	sample_good_R2.fastq.gz	Per sequence quality scores	FAIL
+raw	sample_good_R2.fastq.gz	Per base sequence content	PASS
+raw	sample_good_R2.fastq.gz	Per sequence GC content	WARN
+raw	sample_good_R2.fastq.gz	Per base N content	PASS
+raw	sample_good_R2.fastq.gz	Sequence Length Distribution	PASS
+raw	sample_good_R2.fastq.gz	Sequence Duplication Levels	PASS
+raw	sample_good_R2.fastq.gz	Overrepresented sequences	WARN
+raw	sample_good_R2.fastq.gz	Adapter Content	PASS
+raw	sample_lowqual_R1.fastq.gz	Basic Statistics	PASS
+raw	sample_lowqual_R1.fastq.gz	Per base sequence quality	FAIL
+raw	sample_lowqual_R1.fastq.gz	Per sequence quality scores	PASS
+raw	sample_lowqual_R1.fastq.gz	Per base sequence content	PASS
+raw	sample_lowqual_R1.fastq.gz	Per sequence GC content	FAIL
+raw	sample_lowqual_R1.fastq.gz	Per base N content	WARN
+raw	sample_lowqual_R1.fastq.gz	Sequence Length Distribution	PASS
+raw	sample_lowqual_R1.fastq.gz	Sequence Duplication Levels	PASS
+raw	sample_lowqual_R1.fastq.gz	Overrepresented sequences	WARN
+raw	sample_lowqual_R1.fastq.gz	Adapter Content	PASS
+raw	sample_lowqual_R2.fastq.gz	Basic Statistics	PASS
+raw	sample_lowqual_R2.fastq.gz	Per base sequence quality	FAIL
+raw	sample_lowqual_R2.fastq.gz	Per sequence quality scores	PASS
+raw	sample_lowqual_R2.fastq.gz	Per base sequence content	PASS
+raw	sample_lowqual_R2.fastq.gz	Per sequence GC content	FAIL
+raw	sample_lowqual_R2.fastq.gz	Per base N content	WARN
+raw	sample_lowqual_R2.fastq.gz	Sequence Length Distribution	PASS
+raw	sample_lowqual_R2.fastq.gz	Sequence Duplication Levels	PASS
+raw	sample_lowqual_R2.fastq.gz	Overrepresented sequences	WARN
+raw	sample_lowqual_R2.fastq.gz	Adapter Content	PASS
+processed	sample_adapter_R1.fastq.gz	Basic Statistics	PASS
+processed	sample_adapter_R1.fastq.gz	Per base sequence quality	FAIL
+processed	sample_adapter_R1.fastq.gz	Per sequence quality scores	FAIL
+processed	sample_adapter_R1.fastq.gz	Per base sequence content	PASS
+processed	sample_adapter_R1.fastq.gz	Per sequence GC content	PASS
+processed	sample_adapter_R1.fastq.gz	Per base N content	PASS
+processed	sample_adapter_R1.fastq.gz	Sequence Length Distribution	WARN
+processed	sample_adapter_R1.fastq.gz	Sequence Duplication Levels	PASS
+processed	sample_adapter_R1.fastq.gz	Overrepresented sequences	WARN
+processed	sample_adapter_R1.fastq.gz	Adapter Content	PASS
+processed	sample_adapter_R2.fastq.gz	Basic Statistics	PASS
+processed	sample_adapter_R2.fastq.gz	Per base sequence quality	FAIL
+processed	sample_adapter_R2.fastq.gz	Per sequence quality scores	FAIL
+processed	sample_adapter_R2.fastq.gz	Per base sequence content	PASS
+processed	sample_adapter_R2.fastq.gz	Per sequence GC content	FAIL
+processed	sample_adapter_R2.fastq.gz	Per base N content	PASS
+processed	sample_adapter_R2.fastq.gz	Sequence Length Distribution	WARN
+processed	sample_adapter_R2.fastq.gz	Sequence Duplication Levels	PASS
+processed	sample_adapter_R2.fastq.gz	Overrepresented sequences	WARN
+processed	sample_adapter_R2.fastq.gz	Adapter Content	PASS
+processed	sample_good_R1.fastq.gz	Basic Statistics	PASS
+processed	sample_good_R1.fastq.gz	Per base sequence quality	FAIL
+processed	sample_good_R1.fastq.gz	Per sequence quality scores	FAIL
+processed	sample_good_R1.fastq.gz	Per base sequence content	PASS
+processed	sample_good_R1.fastq.gz	Per sequence GC content	WARN
+processed	sample_good_R1.fastq.gz	Per base N content	PASS
+processed	sample_good_R1.fastq.gz	Sequence Length Distribution	PASS
+processed	sample_good_R1.fastq.gz	Sequence Duplication Levels	PASS
+processed	sample_good_R1.fastq.gz	Overrepresented sequences	WARN
+processed	sample_good_R1.fastq.gz	Adapter Content	PASS
+processed	sample_good_R2.fastq.gz	Basic Statistics	PASS
+processed	sample_good_R2.fastq.gz	Per base sequence quality	FAIL
+processed	sample_good_R2.fastq.gz	Per sequence quality scores	FAIL
+processed	sample_good_R2.fastq.gz	Per base sequence content	PASS
+processed	sample_good_R2.fastq.gz	Per sequence GC content	WARN
+processed	sample_good_R2.fastq.gz	Per base N content	PASS
+processed	sample_good_R2.fastq.gz	Sequence Length Distribution	PASS
+processed	sample_good_R2.fastq.gz	Sequence Duplication Levels	PASS
+processed	sample_good_R2.fastq.gz	Overrepresented sequences	WARN
+processed	sample_good_R2.fastq.gz	Adapter Content	PASS
+processed	sample_lowqual_R1.fastq.gz	Basic Statistics	PASS
+processed	sample_lowqual_R1.fastq.gz	Per base sequence quality	FAIL
+processed	sample_lowqual_R1.fastq.gz	Per sequence quality scores	FAIL
+processed	sample_lowqual_R1.fastq.gz	Per base sequence content	PASS
+processed	sample_lowqual_R1.fastq.gz	Per sequence GC content	PASS
+processed	sample_lowqual_R1.fastq.gz	Per base N content	WARN
+processed	sample_lowqual_R1.fastq.gz	Sequence Length Distribution	WARN
+processed	sample_lowqual_R1.fastq.gz	Sequence Duplication Levels	PASS
+processed	sample_lowqual_R1.fastq.gz	Overrepresented sequences	WARN
+processed	sample_lowqual_R1.fastq.gz	Adapter Content	PASS
+processed	sample_lowqual_R2.fastq.gz	Basic Statistics	PASS
+processed	sample_lowqual_R2.fastq.gz	Per base sequence quality	FAIL
+processed	sample_lowqual_R2.fastq.gz	Per sequence quality scores	FAIL
+processed	sample_lowqual_R2.fastq.gz	Per base sequence content	PASS
+processed	sample_lowqual_R2.fastq.gz	Per sequence GC content	WARN
+processed	sample_lowqual_R2.fastq.gz	Per base N content	WARN
+processed	sample_lowqual_R2.fastq.gz	Sequence Length Distribution	PASS
+processed	sample_lowqual_R2.fastq.gz	Sequence Duplication Levels	PASS
+processed	sample_lowqual_R2.fastq.gz	Overrepresented sequences	WARN
+processed	sample_lowqual_R2.fastq.gz	Adapter Content	PASS

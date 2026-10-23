@@ -1,0 +1,17 @@
+test_bad_numeric (test_qc.QC.test_bad_numeric) ... ok
+test_duplicate (test_qc.QC.test_duplicate) ... ok
+test_equivalent_swapped_locus (test_qc.QC.test_equivalent_swapped_locus) ... ok
+test_fixture_repair_and_reordering (test_qc.QC.test_fixture_repair_and_reordering) ... ok
+test_id_conflict (test_qc.QC.test_id_conflict) ... ok
+test_locus_conflict (test_qc.QC.test_locus_conflict) ... ok
+test_malformed_partner (test_qc.QC.test_malformed_partner) ... ok
+test_pairing (test_qc.QC.test_pairing) ... ok
+test_palindrome (test_qc.QC.test_palindrome) ... ok
+test_quality_length (test_qc.QC.test_quality_length) ... ok
+test_schema (test_qc.QC.test_schema) ... ok
+test_swap (test_qc.QC.test_swap) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.096s
+
+OK

@@ -1,0 +1,93 @@
+{
+  "stage": "all",
+  "hpc_execution": "not inferred; see scheduler logs",
+  "synthetic_only": true,
+  "summary": {
+    "input_rows": 58,
+    "retained": 41,
+    "excluded": 17,
+    "hits": 4,
+    "partner_rows": 12,
+    "harmonised": 6,
+    "missing_annotation": 2
+  },
+  "reads": [
+    {
+      "sample": "sample_adapter",
+      "input_pairs": 500,
+      "output_pairs": 500,
+      "synthetic_ids_normalised": true,
+      "processed": true,
+      "before_bases": 100000,
+      "before_q30_fraction": 1.0,
+      "before_low_quality_bases": 0,
+      "before_adapter_reads": 200,
+      "after_bases": 93994,
+      "after_q30_fraction": 1.0,
+      "after_low_quality_bases": 0,
+      "after_adapter_reads": 0
+    },
+    {
+      "sample": "sample_good",
+      "input_pairs": 500,
+      "output_pairs": 500,
+      "synthetic_ids_normalised": true,
+      "processed": false,
+      "before_bases": 100000,
+      "before_q30_fraction": 1.0,
+      "before_low_quality_bases": 0,
+      "before_adapter_reads": 0,
+      "after_bases": 100000,
+      "after_q30_fraction": 1.0,
+      "after_low_quality_bases": 0,
+      "after_adapter_reads": 0
+    },
+    {
+      "sample": "sample_lowqual",
+      "input_pairs": 500,
+      "output_pairs": 500,
+      "synthetic_ids_normalised": true,
+      "processed": true,
+      "before_bases": 100000,
+      "before_q30_fraction": 0.7,
+      "before_low_quality_bases": 30000,
+      "before_adapter_reads": 0,
+      "after_bases": 68995,
+      "after_q30_fraction": 1.0,
+      "after_low_quality_bases": 0,
+      "after_adapter_reads": 0
+    }
+  ],
+  "genotype": {
+    "raw_samples": 60,
+    "raw_variants": 120,
+    "retained_samples": 58,
+    "retained_variants": 112,
+    "pca_markers": 110,
+    "cases": 34,
+    "controls": 24,
+    "hwe_exclusions": 0,
+    "valid_tests": 111,
+    "failed_tests": 1,
+    "bonferroni_hits": 0,
+    "genomewide_hits": 0,
+    "firth_tests": 0
+  },
+  "inputs_unchanged": true,
+  "status": "PASS",
+  "input_sha256": {
+    "data/annotation.tsv": "518a9588f0e530217237e3f0cbf7f47756e0cae57c839dc7a9725e05471478d5",
+    "data/gwas_partner_for_harmonisation.tsv": "ed4081397b4037e0a51f100f0ff5b56e02582f3820489976770dd59404638bc8",
+    "data/gwas_summary.tsv": "67ca9f1fa114bde056af91c61c4005f7a522e849dc3cb3a66b867eeef196516a",
+    "data/fastq/sample_adapter_R1.fastq.gz": "b3a4d45a66ba65c165a485fe6dc98d1027cccbe696ae087165ff0a5303fbd726",
+    "data/fastq/sample_adapter_R2.fastq.gz": "b62271f86d7bb8e6f68365ae9edcaa37ec94484926a5d7eef1414b0136976ad9",
+    "data/fastq/sample_good_R1.fastq.gz": "e29df040902ca81b6b2d374ab661158298fd0d151068b7f6d8add6311cfbab28",
+    "data/fastq/sample_good_R2.fastq.gz": "09e56885d987c6551917437ea29e6a38560672574567f13a8e93b18eb3253026",
+    "data/fastq/sample_lowqual_R1.fastq.gz": "1669f780242e82d381d2355af701d956c8e09044dbb971d1df460d55431543c2",
+    "data/fastq/sample_lowqual_R2.fastq.gz": "e9f0a8c52bd21912a744373fc1a3c8ad28a32f4008fe76c6a3a209bc9de2275e",
+    "data/genotype/cohort_practice.vcf": "deac45c51de6c09b88355259f3dca658ac1b30074c47ade3b85d7bde7fdeda1f",
+    "data/genotype/cohort_practice.vcf.gz": "78149ed9208d410207df0c60040d8d08344e82e74b68536b04d1dcc38a10a12a",
+    "data/genotype/covariates.tsv": "8a8cb0428dd0bf64cfcc47deb3457b3f642c5648b2fbfbb14d964ba2a6b5991c",
+    "data/genotype/phenotype.tsv": "5be74c4fa08a698df1f42056a3ae428210b4ee13ca56c2f2865e6fd41daff9af"
+  }
+}

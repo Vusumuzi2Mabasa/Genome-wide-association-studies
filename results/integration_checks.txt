@@ -1,0 +1,6 @@
+PASS: summary expected counts 41 retained, 17 excluded, 4 hits, 6 harmonised.
+PASS: genotype 58 samples, 112 variants, 111 valid tests, 1 recorded failed test.
+PASS: all three read fixtures retain 500 pairs with no full fixture adapter or Q<20 bases.
+PASS: copied inputs match SHA-256 of original source-pack inputs.
+PASS: 12 unit tests; shell syntax checked.
+HPC: no scheduler submission or cluster execution performed.

@@ -1,0 +1,13 @@
+variant	orientation	aligned_beta	aligned_eaf	issues	ready_for_combination
+rs0001	same	0.04681779567	0.4764049838		True
+rs0002	swap	0.34	0.8617753457		True
+rs0003	strand	0.1089596994	0.4538536484		True
+rs0004	same	NA	NA	wald_p_inconsistent	False
+rs0005	palindromic_unresolved	NA	NA	palindromic_unresolved	False
+rs0006	palindromic_unresolved	NA	NA	palindromic_unresolved	False
+rs0007	strand	-0.003262004946	0.4802444065		True
+rs0008	same	NA	NA	wald_p_inconsistent	False
+rs0009	same	0.07459206163	0.4334073084		True
+rs0010	swap	-0.1279332944	0.7076794065		True
+rs0011	palindromic_unresolved	NA	NA	palindromic_unresolved	False
+rs0012	palindromic_unresolved	NA	NA	palindromic_unresolved;wald_p_inconsistent	False

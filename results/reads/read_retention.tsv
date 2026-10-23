@@ -1,0 +1,4 @@
+sample	input_pairs	output_pairs	synthetic_ids_normalised	processed	before_bases	before_q30_fraction	before_low_quality_bases	before_adapter_reads	after_bases	after_q30_fraction	after_low_quality_bases	after_adapter_reads
+sample_adapter	500	500	True	True	100000	1.0	0	200	93994	1.0	0	0
+sample_good	500	500	True	False	100000	1.0	0	0	100000	1.0	0	0
+sample_lowqual	500	500	True	True	100000	0.7	30000	0	68995	1.0	0	0

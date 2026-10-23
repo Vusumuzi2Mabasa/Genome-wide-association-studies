@@ -1,0 +1,13 @@
+{
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "executables": {
+    "fastqc": "/usr/bin/fastqc",
+    "multiqc": "/usr/bin/multiqc",
+    "fastp": "/usr/bin/fastp",
+    "plink2": "/home/vusi/miniforge3/bin/plink2"
+  },
+  "fastqc": "FastQC v0.12.1",
+  "multiqc": "multiqc, version 1.18",
+  "fastp": "fastp 0.23.4",
+  "plink2": "PLINK v2.0.0-a.7.8 64-bit (19 Sep 2026)"
+}
